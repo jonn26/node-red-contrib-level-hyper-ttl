@@ -3,12 +3,12 @@
   "version": "0.0.1",
   "description": "Support for TTL, streams, batch - LevelDB database",
   "dependencies": {
-    "level": "1.4.0",
+    "level-hyper": "1.2.1",
     "level-ttl": "~3.1.0"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/jonn26/node-red-contrib-leveldb-ttl.git"
+    "url": "git://github.com/jonn26/node-red-contrib-level-hyper-ttl.git"
   },
   "license": "Apache-2.0",
   "keywords": [

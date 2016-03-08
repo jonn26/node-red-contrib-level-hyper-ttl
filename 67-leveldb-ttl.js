@@ -19,7 +19,7 @@
 
 module.exports = function(RED) {
     "use strict";
-    var lvldb = require('level'),
+    var lvldb = require('level-hyper'),
         lvlttl = require('level-ttl');
 
     function LevelNode(n) {
