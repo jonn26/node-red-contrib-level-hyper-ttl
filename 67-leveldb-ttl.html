@@ -143,6 +143,55 @@
 </script>
 
 <!--
+08 Mar 2016: backup node added 
+-->
+
+<script type="text/x-red" data-template-name="leveldb-ttl backup">
+    <div class="form-row node-input-level">
+        <label for="node-input-level"><i class="fa fa-briefcase"></i> Database</label>
+        <input type="text" id="node-input-level">
+    </div>
+    <div class="form-row">
+        <label for="node-input-backup"><i class="fa fa-briefcase"></i> Backup Name</label>
+        <input type="text" id="node-input-backup">
+    </div>
+    <div class="form-row">
+        <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+    <div class="form-tips" id="nodettl-tip"><span>A successful live backup will result in a backup folder named backup-:<b>name</b> inside the location folder of the current database.</span></div>
+</script>
+
+
+<script type="text/x-red" data-help-name="leveldb-ttl backup">
+    <p>Uses <a href="https://code.google.com/p/leveldb/" target="_new"><i>LevelDB</i></a> for a simple key value pair database.</p>
+    <p>Use this node to perform a <b>live backup</b> of the database. The <b>name</b> parameter is a String. A successful live backup will result in a backup folder named backup-:<b>name</b> inside the location folder of the current database. The backup name can be set by the <b>msg.payload</b> or in the properties of this node which overrides anything specified in the <b>msg.payload</b>.</p>
+</script>
+
+<script type="text/javascript">
+    RED.nodes.registerType('leveldb-ttl backup',{
+        category: 'storage-output',
+        color:"#dbb84d",
+        defaults: {
+            level: {type:"leveldbttlbase",required:true},
+            backup: {value:""},
+            name: {value:""},
+        },
+        inputs:1,
+        outputs:0,
+        icon: "leveldb.png",
+        align: "right",
+        label: function() {
+            var levelNode = RED.nodes.node(this.level);
+            return this.name||(levelNode?levelNode.label():"leveldb");
+        },
+            labelStyle: function() {
+            return this.name?"node_label_italic":"";
+        }
+    });
+</script>
+
+<!--
 06 Oct 2015: new nodes added 
 -->
 

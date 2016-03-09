@@ -117,7 +117,34 @@ module.exports = function(RED) {
     }
     RED.nodes.registerType("leveldb-ttl out",LevelDBNodeOut);
     
+    //08 mar 2016. new backup node
     
+    function LevelDBNodeBackup(n) {
+        RED.nodes.createNode(this,n);
+        this.level = n.level;
+        this.backup = n.backup;
+        this.levelConfig = RED.nodes.getNode(this.level);
+
+        var node = this;
+        node.on("input", function(msg) {
+            var data = msg.payload;
+            if ((typeof data === "object") && (!Buffer.isBuffer(data))) {
+                data = JSON.stringify(data);
+            }
+            if (typeof data === "boolean") { data = data.toString(); }
+            if (typeof data === "number") { data = data.toString(); }
+
+            var backupName = node.backup || data || "";
+            
+            if (node.levelConfig && node.levelConfig.ready) {
+                node.levelConfig.db.db.liveBackup(backupName, function(err) {
+                    if (err) { node.error(err); }
+                });
+            }
+            else { node.error("Database not ready",msg); }
+        });
+    }
+    RED.nodes.registerType("leveldb-ttl backup",LevelDBNodeBackup);
     
     //06 oct 2015. new nodes
     
