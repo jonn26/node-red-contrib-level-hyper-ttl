@@ -14,6 +14,7 @@
  * limitations under the License.
  *
  * 06 Oct - 2015 added TTL, Readers and Batch support. by min0n
+ * 08 Mar - 2016 added live backup using level-hyper. by jonn26
  *
  **/
 
