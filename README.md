@@ -2,8 +2,8 @@
 
 This fork of node-red-contrib-leveldb-ttl just adds live backup functionality via a new level-ttl backup node. This is done by using the alternate level-hyper package which has live backup built in.
 
-See level-hyper for more details:
-https://github.com/Level/level-hyper
+See leveldown-hyper for more details:
+https://github.com/level/leveldown-hyper
 
 ##Install
 
